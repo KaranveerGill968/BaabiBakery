@@ -37,7 +37,7 @@ const products = [
   {
     id: 105,
     name: 'Dilawar Cake',
-        description: 'Baabi knows.',
+    description: 'Baabi knows.',
     price: '$23.99',
     image: cake5,
   },
@@ -46,32 +46,45 @@ const products = [
 const FeaturedProducts = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   return (
-    <section className="py-12 px-6 bg-white text-gray-800">
-      <h2 className="text-3xl font-bold text-center mb-10">Featured Products</h2>
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="pt-6 pb-16 px-8 bg-pink-50 text-pink-900">
+      <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-12 tracking-wide">Featured Orders</h2>
+      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {products.map(product => (
-          <div className="bg-pink-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition" key={product.id}>
+          <div
+            key={product.id}
+            className="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+            onClick={() => setSelectedImage(product.image)}
+          >
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-36 object-cover cursor-pointer"
-              onClick={() => setSelectedImage(product.image)}
+              className="w-full h-40 object-cover"
+              loading="lazy"
             />
-            <div className="p-4">
-              <h3>{product.name}</h3>
-              <p>{product.description}</p>
-              <span className="product-price">{product.price}</span>
+            <div className="p-5">
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">{product.name}</h3>
+              <p className="text-sm sm:text-base text-gray-700 mb-4">{product.description}</p>
+              <span className="inline-block bg-pink-200 text-pink-800 font-bold px-3 py-1 rounded-full text-xs sm:text-sm">
+                {product.price}
+              </span>
             </div>
           </div>
         ))}
       </div>
+
       {selectedImage && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center">
-          <div className="relative">
-            <img src={selectedImage} alt="Expanded" className="max-w-full max-h-[90vh] rounded shadow-lg" />
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center p-4">
+          <div className="relative max-w-full max-h-[90vh]">
+            <img
+              src={selectedImage}
+              alt="Expanded"
+              className="rounded-lg shadow-lg max-w-full max-h-[90vh]"
+              loading="lazy"
+            />
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-2 right-2 bg-white text-black px-3 py-1 rounded-full shadow"
+              className="absolute top-3 right-3 bg-pink-100 text-pink-900 px-3 py-1 rounded-full shadow hover:bg-pink-300 transition"
+              aria-label="Close image"
             >
               ✕
             </button>
@@ -80,6 +93,6 @@ const FeaturedProducts = () => {
       )}
     </section>
   );
-}
+};
 
 export default FeaturedProducts;

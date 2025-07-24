@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Hero() {
   return (
     <section
-      className="relative h-[80vh] bg-cover bg-center text-white"
+      className="relative h-[70vh] bg-cover bg-center text-white"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       {/* Overlay for contrast */}
